@@ -34,6 +34,8 @@ RUN npm ci
 
 COPY . .
 ENV APP_BUILD_HASH=${BUILD_HASH}
+# Increase Node.js heap size for large production builds
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 RUN npm run build
 
 ######## WebUI backend ########
